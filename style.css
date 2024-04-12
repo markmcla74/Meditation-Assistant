@@ -165,7 +165,7 @@
             }
 
             .info h2, .explanation h2 {
-                font-size: 20px; /* Smaller font size for sub-headers */
+                font-size: 30px; /* Smaller font size for sub-headers */
             }
 
             #startButton {

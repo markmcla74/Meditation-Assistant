@@ -17,7 +17,7 @@
             margin-bottom: 20px;
         }
         h1 {
-            font-size: 40px;
+            font-size: 28px;
             font-weight: 700;
         }
         p {
@@ -154,7 +154,7 @@
             }
 
             h1 {
-                font-size: 45px; /* Smaller font size for headers */
+                font-size: 50px; /* Smaller font size for headers */
             }
 
             p {

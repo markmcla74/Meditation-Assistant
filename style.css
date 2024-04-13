@@ -157,6 +157,9 @@
                 font-size: 40px; /* Smaller font size for headers */
             }
 
+             h2 {
+                font-size: 40px; /* Smaller font size for headers */
+            }
             p {
                 font-size: 14px; /* Smaller font size for paragraphs */
             }

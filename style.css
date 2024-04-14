@@ -61,22 +61,7 @@
         #startButton:hover {
             background-color: #0056b3;
         }
-        .warning {
-            color: #D32F2F; /* A softer shade of red for readability */
-            font-weight: 700;
-            background-color: #FFFDE7; /* Light yellow background for attention */
-            padding: 10px;
-            border-radius: 5px;
-            margin: 10px 0;
-            display: flex;
-            max-width: 600px; /* Limit the width of warning messages */
-            margin-left: auto; /* Center the warning horizontally */
-            margin-right: auto;
-            align-items: center;
-            text-align: left;
-            border: 1px solid #FFC107; /* Subtle border */
-            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Soft shadow */
-        }
+
         .info {
             margin-top: 20px;
             margin-bottom: 100px;
@@ -106,30 +91,7 @@
             margin-bottom: 30px;
         }
 
-        .warning-text-centered {
-            justify-content: center; /* Centers content in a flex container */
-            text-align: center; /* Ensures text is centered */
-        }
 
-        .legal-disclaimer {
-            background-color: #ffe5e5; /* Very light red for subtlety and attention */
-            color: #333333; /* Dark grey for readability */
-            font-weight: normal; /* Regular font weight for easier reading */
-            padding: 20px; /* Increased padding */
-            margin-top: 40px; /* Increased space from the content above */
-            margin-bottom: 40px; /* Increased space from the content below */
-            border: 2px solid #ff0000; /* Darker red border for visibility */
-            border-radius: 8px; /* Increased border radius for a softer look */
-            text-align: left; /* Left align text for traditional reading flow */
-            font-size: 14px; /* Maintain font size for readability */
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Increased box shadow for depth */
-            width: 60%; /* Increased width */
-            margin-left: auto; /* Center align the box */
-            margin-right: auto; /* Center align the box */
-            align-items: center;
-            max-width: 600px; /* Limit the width of the box */
-            line-height: 1.5; /* Increased line height for readability */
-        }
 
         @media (max-width: 768px) {
             #content {
@@ -139,19 +101,7 @@
             }
 
 
-            .explanation {
-                padding: 10px; /* Smaller padding on smaller screens */
-                margin: 10px; /* Smaller margin on smaller screens */
-            }
 
-            .warning {
-                font-size: 14px; /* Smaller font size for warnings */
-                padding: 8px; /* Slightly reduced padding */
-            }
-
-            .legal-disclaimer {
-                width: 100%; /* Use full width for smaller screens */
-            }
 
             h1 {
                 font-size: 40px; /* Smaller font size for headers */

@@ -180,7 +180,7 @@
                      ctx.fillStyle = 'black';
                 }
                 if (sawtoothValue <= 0){
-                     ctx.fillStyle = 'blue';
+                     ctx.fillStyle = 'SkyBlue';
                 }
 
         }

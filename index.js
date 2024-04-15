@@ -5,10 +5,11 @@
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
 
-        let elapsedTime, lastTime, firstPassTime, isFirstLoop, sawtoothValue, animationFrameId, t1, t2, t3;
+        let elapsedTime, lastTime, firstPassTime, isFirstLoop, sawtoothValue, animationFrameId, t1, t2, t3, myRed;
         t1 = 30000;
         t2 = 480000;
         t3 = 570000;
+        myRed = 0xff0000;
         lastTime = 0;
         isFirstLoop = 1;
         firstPassTime = 0;
@@ -162,7 +163,7 @@
                      ctx.fillStyle = 'black';
                 }
                 if (sawtoothValue <= 0){
-                     ctx.fillStyle = 'green';
+                     ctx.fillStyle = 'myRed';
                 }
 
         }

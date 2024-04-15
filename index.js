@@ -5,11 +5,10 @@
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
 
-        let elapsedTime, lastTime, firstPassTime, isFirstLoop, sawtoothValue, animationFrameId, t1, t2, t3, myRed;
+        let elapsedTime, lastTime, firstPassTime, isFirstLoop, sawtoothValue, animationFrameId, t1, t2, t3;
         t1 = 30000;
         t2 = 480000;
         t3 = 570000;
-        // myRed = ff0000;
         lastTime = 0;
         isFirstLoop = 1;
         firstPassTime = 0;
@@ -95,10 +94,10 @@
 
         function signal02(elapsedTime){
              let periodGreen, slopeGreen, dcOffsetGreen, periodBlue, slopeBlue, dcOffsetBlue;
-             periodGreen = 250; //in milliseconds
+             periodGreen = 150; //in milliseconds
              slopeGreen = 200/periodGreen; //Height of sawtooth arbitrary decision. Choose 200, so when duty cycle = 50%, sawtooth goes from -100 to 100
              dcOffsetGreen = -100; //dcOffset controls duty cycle.
-             periodBlue = 250; //in milliseconds
+             periodBlue = 150; //in milliseconds
              slopeBlue = 200/periodBlue; //Height of sawtooth arbitrary decision. Choose 200, so when duty cycle = 50%, sawtooth goes from -100 to 100
              dcOffsetBlue = -100; //dcOffset controls duty cycle.
              //dcOffset duty cycle ranges from 0 to -200. -100 = 50% duty cycle,

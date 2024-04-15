@@ -9,7 +9,7 @@
         t1 = 30000;
         t2 = 480000;
         t3 = 570000;
-        myRed = 0xff0000;
+        myRed = ff0000;
         lastTime = 0;
         isFirstLoop = 1;
         firstPassTime = 0;
@@ -163,7 +163,7 @@
                      ctx.fillStyle = 'black';
                 }
                 if (sawtoothValue <= 0){
-                     ctx.fillStyle = 'green';
+                     ctx.fillStyle = myRed;
                 }
 
         }

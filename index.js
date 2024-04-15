@@ -9,7 +9,7 @@
         t1 = 30000;
         t2 = 480000;
         t3 = 570000;
-        myRed = ff0000;
+        // myRed = ff0000;
         lastTime = 0;
         isFirstLoop = 1;
         firstPassTime = 0;

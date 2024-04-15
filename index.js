@@ -163,7 +163,7 @@
                      ctx.fillStyle = 'black';
                 }
                 if (sawtoothValue <= 0){
-                     ctx.fillStyle = myRed;
+                     ctx.fillStyle = 'green';
                 }
 
         }

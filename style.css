@@ -48,12 +48,12 @@
 
         #startButton {
             margin-top: 40px;
-            padding: 15px 30px;
-            font-size: 30px;
+            padding: 25px 40px;
+            font-size: 35px;
             color: white;
             background-color: #007bff;
             border: none;
-            border-radius: 5px;
+            border-radius: 10px;
             cursor: pointer;
             display: block;
             margin: 0 auto;

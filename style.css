@@ -68,7 +68,8 @@
             background-color: #eef;
             padding: 15px;
             border-radius: 10px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+           /* box-shadow: 0 2px 4px rgba(0,0,0,0.2); */
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5); /* Add a subtle box shadow */
         }
         .info h2 {
             font-size: 22px;

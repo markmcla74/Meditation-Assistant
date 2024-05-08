@@ -5,10 +5,13 @@
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
 
-        let elapsedTime, lastTime, firstPassTime, isFirstLoop, sawtoothValue, animationFrameId, t1, t2, t3;
-        t1 = 30000;
-        t2 = 480000;
-        t3 = 570000;
+        let elapsedTime, lastTime, firstPassTime, isFirstLoop, sawtoothValue, animationFrameId, t1, t2, t3, t4, t5, t6;
+        t1 = 30000;  // 30 sec
+        t2 = 180000; // 3 min
+        t3 = 270000; // 4 min 30 sec
+        t4 = 390000; // 6 min 30 sec
+        t5 = 480000; // 8 min
+        t6 = 570000; // 9 min 30 sec
         lastTime = 0;
         isFirstLoop = 1;
         firstPassTime = 0;
@@ -42,8 +45,20 @@
                   signal03(elapsedTime);
 
                 }
-                if (elapsedTime >= t3){
+                if ((elapsedTime >= t3) && (elapsedTime < t4)){
                   signal04(elapsedTime);
+
+                }
+                if ((elapsedTime >= t4) && (elapsedTime < t5)){
+                  signal05(elapsedTime);
+
+                }
+                if ((elapsedTime >= t5) && (elapsedTime < t6)){
+                  signal06(elapsedTime);
+
+                }
+                if (elapsedTime >= t6){
+                  signal07(elapsedTime);
 
                 }
 
@@ -93,6 +108,18 @@
         }
 
         function signal02(elapsedTime){
+             let periodGreen, slopeGreen, dcOffsetGreen;
+             periodGreen = 250;
+             slopeGreen = 200/periodGreen; //Height of sawtooth arbitrary decision. Choose 200, so when duty cycle = 50%, sawtooth goes from -100 to 100
+             dcOffsetGreen = -100; //dcOffset controls duty cycle.
+
+             //dcOffset duty cycle ranges from 0 to -200. -100 = 50% duty cycle,
+             //dutyCycle = (dcOffset/MAXdcOffset)*100%
+             //Note: duty cycles too far from 50% look a little glitchy.
+             pattern01(elapsedTime, periodGreen, slopeGreen, dcOffsetGreen);
+        }
+
+        function signal03(elapsedTime){
              let periodGreen, slopeGreen, dcOffsetGreen, periodBlue, slopeBlue, dcOffsetBlue;
              periodGreen = 150; //in milliseconds
              slopeGreen = 200/periodGreen; //Height of sawtooth arbitrary decision. Choose 200, so when duty cycle = 50%, sawtooth goes from -100 to 100
@@ -112,21 +139,45 @@
 
         }
 
-        function signal03(elapsedTime){
-            let periodGreen, slopeGreen, dcOffsetGreen, periodBlue, slopeBlue, dcOffsetBlue;
-             if (elapsedTime < (t2 + (t3-t2)/5)){
+        function signal04(elapsedTime){
+             let periodGreen, slopeGreen, dcOffsetGreen;
+             periodGreen = 250;
+             slopeGreen = 200/periodGreen; //Height of sawtooth arbitrary decision. Choose 200, so when duty cycle = 50%, sawtooth goes from -100 to 100
+             dcOffsetGreen = -100; //dcOffset controls duty cycle.
+
+             //dcOffset duty cycle ranges from 0 to -200. -100 = 50% duty cycle,
+             //dutyCycle = (dcOffset/MAXdcOffset)*100%
+             //Note: duty cycles too far from 50% look a little glitchy.
+             pattern01(elapsedTime, periodGreen, slopeGreen, dcOffsetGreen);
+        }
+
+        function signal05(elapsedTime){
+             let periodGreen, slopeGreen, dcOffsetGreen;
+             periodGreen = 250;
+             slopeGreen = 200/periodGreen; //Height of sawtooth arbitrary decision. Choose 200, so when duty cycle = 50%, sawtooth goes from -100 to 100
+             dcOffsetGreen = -100; //dcOffset controls duty cycle.
+
+             //dcOffset duty cycle ranges from 0 to -200. -100 = 50% duty cycle,
+             //dutyCycle = (dcOffset/MAXdcOffset)*100%
+             //Note: duty cycles too far from 50% look a little glitchy.
+             pattern01(elapsedTime, periodGreen, slopeGreen, dcOffsetGreen);
+        }
+
+        function signal06(elapsedTime){
+            let periodGreen, slopeGreen, dcOffsetGreen;
+             if (elapsedTime < (t5 + (t6-t5)/5)){
                periodGreen = 250; //in milliseconds
              }
-             if ((elapsedTime >=(t2+(t3-t2)/5)) && (elapsedTime < (t2 + 2*(t3-t2)/5))){
+             if ((elapsedTime >=(t5+(t6-t5)/5)) && (elapsedTime < (t5 + 2*(t6-t5)/5))){
                periodGreen = 500;
              }
-             if ((elapsedTime >=(t2+ 2*(t3-t2)/5)) && (elapsedTime < (t2 + 3*(t3-t2)/5))){
+             if ((elapsedTime >=(t5+ 2*(t6-t5)/5)) && (elapsedTime < (t5 + 3*(t6-t5)/5))){
                periodGreen = 750;
              }
-             if ((elapsedTime >=(t2 + 3*(t3-t2)/5)) && (elapsedTime < (t2+ 4*(t3-t2)/5))){
+             if ((elapsedTime >=(t5 + 3*(t6-t5)/5)) && (elapsedTime < (t5+ 4*(t6-t5)/5))){
                periodGreen = 1000;
              }
-             if ((elapsedTime >=(t2+ 4*(t3-t2)/5)) && (elapsedTime < t3)){
+             if ((elapsedTime >=(t5+ 4*(t6-t5)/5)) && (elapsedTime < t6)){
                periodGreen = 1500;
              }
              slopeGreen = 200/periodGreen; //Height of sawtooth arbitrary decision. Choose 200, so when duty cycle = 50%, sawtooth goes from -100 to 100
@@ -138,7 +189,7 @@
              pattern01(elapsedTime, periodGreen, slopeGreen, dcOffsetGreen);
         }
 
-        function signal04(elapsedTime){
+        function signal07(elapsedTime){
              let periodGreen, slopeGreen, dcOffsetGreen, periodBlue, slopeBlue, dcOffsetBlue;
 
              periodGreen = 1;
@@ -151,11 +202,8 @@
         }
 
         //define flashing pattern
-        function pattern01(elapsedTime, periodGreen, slopeGreen, dcOffsetGreen) {
-             let sawtoothValue, slope, period, dcOffset;
-             slope = slopeGreen;
-             period = periodGreen;
-             dcOffset = dcOffsetGreen;
+        function pattern01(elapsedTime, period, slope, dcOffset) {
+             let sawtoothValue;
              sawtoothValue = slope*(elapsedTime % period) + dcOffset;
 
                 if (sawtoothValue > 0) {
@@ -168,11 +216,8 @@
         }
 
         //define flashing pattern
-        function pattern02(elapsedTime, periodBlue, slopeBlue, dcOffsetBlue) {
-             let sawtoothValue, slope, period, dcOffset;
-             slope = slopeBlue;
-             period = periodBlue;
-             dcOffset = dcOffsetBlue;
+        function pattern02(elapsedTime, period, slope, dcOffset) {
+             let sawtoothValue;
              sawtoothValue = slope*(elapsedTime % period) + dcOffset;
 
                 if (sawtoothValue > 0) {
@@ -184,11 +229,8 @@
 
         }
 
-        function pattern03(elapsedTime, periodBlack, slopeBlack, dcOffsetBlack) {
-             let sawtoothValue, slope, period, dcOffset;
-             slope = slopeBlack;
-             period = periodBlack;
-             dcOffset = dcOffsetBlack;
+        function pattern03(elapsedTime, period, slope, dcOffset) {
+             //let sawtoothValue;
              //sawtoothValue = slope*(elapsedTime % period) + dcOffset;
              ctx.fillStyle = 'black';
         }

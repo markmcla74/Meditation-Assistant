@@ -75,7 +75,7 @@
             aspect-ratio: 16 / 9;
             width: 60%;
             @media (max-width: 768px) {
-            width: 95%;
+            width: 80%;
             }
             padding: 10px;
 

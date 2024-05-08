@@ -16,8 +16,8 @@
            /* padding: 20px; */
            margin-top: 20px;
            margin-bottom: 20px;
-           margin-left:15px;
-           margin-right:15px;
+           margin-left:10px;
+           margin-right:10px;
            background-color: rgba(255, 255, 255, 0.8); /* Set a semi-transparent white background for content */
            border: 1px solid;
            padding: 10px;
@@ -33,6 +33,7 @@
             line-height: 1.6;
             font-size: 16px;
             max-width: 600px;
+            text-align: left;
         }
         a {
             color: #0066cc;
@@ -75,12 +76,25 @@
             aspect-ratio: 16 / 9;
             width: 60%;
             @media (max-width: 768px) {
-            width: 80%;
+            width: 95%;
             }
             padding: 10px;
 
         }
 
+
+        .mainImageFormat {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 70%;
+            @media (max-width: 600px) {
+                width: 90%;
+            }
+            @media (min-width: 950px) {
+                width: 50%;
+            }
+        }
 
         @media (max-width: 768px) {
             #content {
@@ -94,7 +108,7 @@
                 font-size: 30px; /* Smaller font size for the button text */
             }
             h1 {
-            font-size: 25px;
+            font-size: 50px;
 
             }
         }

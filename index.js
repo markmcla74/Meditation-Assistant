@@ -203,15 +203,17 @@
 
         //define flashing pattern
         function pattern01(elapsedTime, period, slope, dcOffset) {
-             let sawtoothValue;
+             let sawtoothValue, opacityValue;
              sawtoothValue = slope*(elapsedTime % period) + dcOffset;
-
-                if (sawtoothValue > 0) {
-                     ctx.fillStyle = 'black';
-                }
-                if (sawtoothValue <= 0){
-                     ctx.fillStyle = 'SpringGreen';
-                }
+             opacityValue = Math.abs(sawtoothValue/dcOffset);
+             ctx.globalAlpha = opacityValue;
+             ctx.fillStyle = 'SpringGreen';
+             //   if (sawtoothValue > 0) {
+             //        ctx.fillStyle = 'black';
+             //   }
+             //   if (sawtoothValue <= 0){
+             //        ctx.fillStyle = 'SpringGreen';
+             //   }
 
         }
 

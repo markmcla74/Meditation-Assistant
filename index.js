@@ -104,7 +104,7 @@
              //dcOffset duty cycle ranges from 0 to -200. -100 = 50% duty cycle,
              //dutyCycle = (dcOffset/MAXdcOffset)*100%
              //Note: duty cycles too far from 50% look a little glitchy.
-             pattern01(elapsedTime, periodGreen, slopeGreen, dcOffsetGreen);
+             pattern04(elapsedTime, periodGreen, slopeGreen, dcOffsetGreen);
         }
 
         function signal02(elapsedTime){
@@ -116,7 +116,7 @@
              //dcOffset duty cycle ranges from 0 to -200. -100 = 50% duty cycle,
              //dutyCycle = (dcOffset/MAXdcOffset)*100%
              //Note: duty cycles too far from 50% look a little glitchy.
-             pattern01(elapsedTime, periodGreen, slopeGreen, dcOffsetGreen);
+             pattern05(elapsedTime, periodGreen, slopeGreen, dcOffsetGreen);
         }
 
         function signal03(elapsedTime){
@@ -131,10 +131,10 @@
              //dutyCycle = (dcOffset/MAXdcOffset)*100%
              //Note: duty cycles too far from 50% look a little glitchy.
              if (((Math.floor(elapsedTime/100)) % 2)==0){
-                   pattern01(elapsedTime, periodGreen, slopeGreen, dcOffsetGreen);
+                   pattern05(elapsedTime, periodGreen, slopeGreen, dcOffsetGreen);
                    }
              if (((Math.floor(elapsedTime/100)) % 2)==1){
-                   pattern02(elapsedTime, periodBlue, slopeBlue, dcOffsetBlue);
+                   pattern06(elapsedTime, periodBlue, slopeBlue, dcOffsetBlue);
                    }
 
         }
@@ -148,7 +148,7 @@
              //dcOffset duty cycle ranges from 0 to -200. -100 = 50% duty cycle,
              //dutyCycle = (dcOffset/MAXdcOffset)*100%
              //Note: duty cycles too far from 50% look a little glitchy.
-             pattern01(elapsedTime, periodGreen, slopeGreen, dcOffsetGreen);
+             pattern05(elapsedTime, periodGreen, slopeGreen, dcOffsetGreen);
         }
 
         function signal05(elapsedTime){
@@ -160,7 +160,7 @@
              //dcOffset duty cycle ranges from 0 to -200. -100 = 50% duty cycle,
              //dutyCycle = (dcOffset/MAXdcOffset)*100%
              //Note: duty cycles too far from 50% look a little glitchy.
-             pattern01(elapsedTime, periodGreen, slopeGreen, dcOffsetGreen);
+             pattern05(elapsedTime, periodGreen, slopeGreen, dcOffsetGreen);
         }
 
         function signal06(elapsedTime){
@@ -186,7 +186,7 @@
              //dcOffset duty cycle ranges from 0 to -200. -100 = 50% duty cycle,
              //dutyCycle = (dcOffset/MAXdcOffset)*100%
              //Note: duty cycles too far from 50% look a little glitchy.
-             pattern01(elapsedTime, periodGreen, slopeGreen, dcOffsetGreen);
+             pattern05(elapsedTime, periodGreen, slopeGreen, dcOffsetGreen);
         }
 
         function signal07(elapsedTime){
@@ -203,16 +203,14 @@
 
         //define flashing pattern
         function pattern01(elapsedTime, period, slope, dcOffset) {
-             let sawtoothValue, opacityValue;
+             let sawtoothValue;
              sawtoothValue = slope*(elapsedTime % period) + dcOffset;
-             // opacityValue = Math.abs(sawtoothValue/dcOffset);
-             // ctx.globalAlpha = opacityValue;
-             // ctx.fillStyle = 'SpringGreen';
+
                 if (sawtoothValue > 0) {
-                     ctx.fillStyle = 'black';
+                     ctx.fillStyle = 'black'; // black = rgb(0,0,0)
                 }
                 if (sawtoothValue <= 0){
-                     ctx.fillStyle = 'SpringGreen';
+                     ctx.fillStyle = 'rgb(0,255,127)'; // SpringGreen = rgb(0,255,127)
                 }
 
         }
@@ -226,7 +224,7 @@
                      ctx.fillStyle = 'black';
                 }
                 if (sawtoothValue <= 0){
-                     ctx.fillStyle = 'SkyBlue';
+                     ctx.fillStyle = 'SkyBlue'; //SkyBlue = rgb((135,206,235)
                 }
 
         }
@@ -237,6 +235,43 @@
              ctx.fillStyle = 'black';
         }
 
+        function pattern04(elapsedTime, period, slope, dcOffset) {
+             let sawtoothValue, scaleRed, scaleGreen, scaleBlue;
+             sawtoothValue = slope*(elapsedTime % period) + dcOffset;
+             //rgb value of dark orchid is: (153, 50, 204)
+             //absolute value of (sawtoothValue/dcOffset) goes from 1 to 0, and then back to 1, during one period
+             //Smoothly transition from dark orchid, rgb(153,50,204), to black, rgb(0,0,0), and back to dark orchid
+             scaleRed = Math.round(Math.abs(sawtoothValue/dcOffset)*153);
+             scaleGreen = Math.round(Math.abs(sawtoothValue/dcOffset)*50);
+             scaleBlue = Math.round(Math.abs(sawtoothValue/dcOffset)*204);
+             ctx.fillStyle = "rgb("+scaleRed+", "+scaleGreen+", "+scaleBlue+")";
+        }
+
+        function pattern05(elapsedTime, period, slope, dcOffset) {
+             let sawtoothValue, scaleRed, scaleGreen, scaleBlue;
+             sawtoothValue = slope*(elapsedTime % period) + dcOffset;
+             //rgb value of spring green is: rgb(0,255,127)
+             //absolute value of (sawtoothValue/dcOffset) goes from 1 to 0, and then back to 1, during one period
+             //Smoothly transition from spring green, rgb(0,255,127), to black, rgb(0,0,0), and back to spring green
+             scaleRed = Math.round(Math.abs(sawtoothValue/dcOffset)*0);
+             scaleGreen = Math.round(Math.abs(sawtoothValue/dcOffset)*255);
+             scaleBlue = Math.round(Math.abs(sawtoothValue/dcOffset)*127);
+             ctx.fillStyle = "rgb("+scaleRed+", "+scaleGreen+", "+scaleBlue+")";
+        }
+
+         function pattern06(elapsedTime, period, slope, dcOffset) {
+             let sawtoothValue, scaleRed, scaleGreen, scaleBlue;
+             sawtoothValue = slope*(elapsedTime % period) + dcOffset;
+             //rgb value of sky blue is: rgb(135,206,235)
+             //absolute value of (sawtoothValue/dcOffset) goes from 1 to 0, and then back to 1, during one period
+             //Smoothly transition from spring green, rgb(0,255,127), to black, rgb(0,0,0), and back to spring green
+             scaleRed = Math.round(Math.abs(sawtoothValue/dcOffset)*135);
+             scaleGreen = Math.round(Math.abs(sawtoothValue/dcOffset)*206);
+             scaleBlue = Math.round(Math.abs(sawtoothValue/dcOffset)*235);
+             ctx.fillStyle = "rgb("+scaleRed+", "+scaleGreen+", "+scaleBlue+")";
+        }
+
+
         function stopFlashing() {
 
 
@@ -244,6 +279,7 @@
             startButton.textContent = 'Start';
             startButton.removeEventListener('click', stopFlashing);
             startButton.addEventListener('click', startFlashing);
+            isFirstLoop = 1;
 
             // Remove global event listeners
             document.removeEventListener('click', stopHandler);

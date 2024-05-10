@@ -104,7 +104,7 @@
              //dcOffset duty cycle ranges from 0 to -200. -100 = 50% duty cycle,
              //dutyCycle = (dcOffset/MAXdcOffset)*100%
              //Note: duty cycles too far from 50% look a little glitchy.
-             pattern04(elapsedTime, periodGreen, slopeGreen, dcOffsetGreen);
+             pattern05(elapsedTime, periodGreen, slopeGreen, dcOffsetGreen);
         }
 
         function signal02(elapsedTime){
@@ -186,7 +186,7 @@
              //dcOffset duty cycle ranges from 0 to -200. -100 = 50% duty cycle,
              //dutyCycle = (dcOffset/MAXdcOffset)*100%
              //Note: duty cycles too far from 50% look a little glitchy.
-             pattern05(elapsedTime, periodGreen, slopeGreen, dcOffsetGreen);
+             pattern04(elapsedTime, periodGreen, slopeGreen, dcOffsetGreen);
         }
 
         function signal07(elapsedTime){
@@ -264,7 +264,7 @@
              sawtoothValue = slope*(elapsedTime % period) + dcOffset;
              //rgb value of sky blue is: rgb(135,206,235)
              //absolute value of (sawtoothValue/dcOffset) goes from 1 to 0, and then back to 1, during one period
-             //Smoothly transition from spring green, rgb(0,255,127), to black, rgb(0,0,0), and back to spring green
+             //Smoothly transition from sky blue, rgb(135,206,235), to black, rgb(0,0,0), and back to sky blue
              scaleRed = Math.round(Math.abs(sawtoothValue/dcOffset)*135);
              scaleGreen = Math.round(Math.abs(sawtoothValue/dcOffset)*206);
              scaleBlue = Math.round(Math.abs(sawtoothValue/dcOffset)*235);

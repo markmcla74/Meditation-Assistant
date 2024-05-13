@@ -186,7 +186,7 @@
              //dcOffset duty cycle ranges from 0 to -200. -100 = 50% duty cycle,
              //dutyCycle = (dcOffset/MAXdcOffset)*100%
              //Note: duty cycles too far from 50% look a little glitchy.
-             pattern04(elapsedTime, periodGreen, slopeGreen, dcOffsetGreen);
+             pattern07(elapsedTime, periodGreen, slopeGreen, dcOffsetGreen);
         }
 
         function signal07(elapsedTime){
@@ -271,6 +271,17 @@
              ctx.fillStyle = "rgb("+scaleRed+", "+scaleGreen+", "+scaleBlue+")";
         }
 
+        function pattern07(elapsedTime, period, slope, dcOffset) {
+             let sawtoothValue, scaleRed, scaleGreen, scaleBlue;
+             sawtoothValue = slope*(elapsedTime % period) + dcOffset;
+             //rgb value of custom orange is: rgb(248,196,113)
+             //absolute value of (sawtoothValue/dcOffset) goes from 1 to 0, and then back to 1, during one period
+             //Smoothly transition from orange, rgb(248,196,113), to black, rgb(0,0,0), and back to orange
+             scaleRed = Math.round(Math.abs(sawtoothValue/dcOffset)*248);
+             scaleGreen = Math.round(Math.abs(sawtoothValue/dcOffset)*196);
+             scaleBlue = Math.round(Math.abs(sawtoothValue/dcOffset)*113);
+             ctx.fillStyle = "rgb("+scaleRed+", "+scaleGreen+", "+scaleBlue+")";
+        }
 
         function stopFlashing() {
 

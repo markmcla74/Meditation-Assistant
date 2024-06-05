@@ -1,0 +1,101 @@
+/* Resetting default margin and padding */
+body, ul {
+  margin: 0;
+  padding: 0;
+  font-family: 'Montserrat', sans-serif;
+}
+
+
+.content {
+  text-align: center;
+  padding: 50px;
+
+}
+
+h1 {
+  font-size: 2.2rem;
+   @media (max-width: 600px) {
+  font-size: 1.6rem;
+  }
+  margin-bottom: 20px;
+  margin-top: 0px;
+}
+
+h3 {
+  font-size: 1.8rem;
+   @media (max-width: 600px) {
+  font-size: 1.6rem;
+  }
+  margin-bottom: 20px;
+  margin-top: 0px;
+}
+p {
+  font-size: 1.2rem;
+  color: black;
+}
+
+.mainImageFormat {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 70%;
+   @media (max-width: 600px) {
+  width: 90%;
+  }
+   @media (min-width: 950px) {
+  width: 50%;
+  }
+}
+
+.mainImageFormatBlog {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 70%;
+   @media (max-width: 600px) {
+  width: 90%;
+  }
+   @media (min-width: 950px) {
+  width: 50%;
+  }
+}
+
+#authorInfo {
+  text-align: left;
+
+}
+
+#mainContent {
+   padding: 20px;
+   background-color: rgba(255, 255, 255, 0.8); /* Set a semi-transparent white background for content */
+   box-shadow: 0 0 30px rgba(0, 0, 0, 0.5); /* Add a subtle box shadow */
+   border-radius: 10px;
+}
+#myContactImage {
+   width: 33%;
+    @media (max-width: 600px) {
+  width: 80%;
+  }
+   @media (min-width: 950px) {
+  width: 20%;
+  }
+}
+.video {
+  aspect-ratio: 16 / 9;
+  width: 60%;
+  @media (max-width: 600px) {
+  width: 95%;
+  }
+  padding: 15px;
+
+}
+
+
+
+#mainContentVideo {
+padding: 15px;
+padding-top: 0px;
+
+}
+
+

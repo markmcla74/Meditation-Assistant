@@ -1,0 +1,108 @@
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: auto;
+        }
+        #content {
+           /* max-width: 800px; */
+           /* padding: 20px; */
+           margin-top: 20px;
+           margin-bottom: 20px;
+           margin-left:10px;
+           margin-right:10px;
+           background-color: rgba(255, 255, 255, 0.8); /* Set a semi-transparent white background for content */
+           border: 1px solid;
+           padding: 10px;
+           box-shadow: 0 0 30px rgba(0, 0, 0, 0.5); /* Add a subtle box shadow */
+           border-radius: 30px;
+        }
+
+        #player-container {
+            display: none;
+        }
+
+        h1 {
+            font-size: 25px;
+
+        }
+        p {
+            margin: 15px 0;
+            line-height: 1.6;
+            font-size: 16px;
+            max-width: 600px;
+            text-align: left;
+        }
+        a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+
+        ul, li {
+            margin-bottom: 15px; /* Increase spacing between bullet points */
+            text-align: left;
+        }
+
+        canvas {
+            display: none;
+            background: black;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        #startButton {
+            margin-top: 40px;
+            padding: 25px 40px;
+            font-size: 35px;
+            color: white;
+            background-color: #007bff;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            display: none;
+            margin: 0 auto;
+        }
+        #startButton:hover {
+            background-color: #0056b3;
+        }
+
+        .mainImageFormat {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 70%;
+            @media (max-width: 600px) {
+                width: 90%;
+            }
+            @media (min-width: 950px) {
+                width: 50%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            #content {
+                max-width: 100%; /* Use full width for smaller screens */
+                padding: 10px; /* Reduce padding */
+                margin: 10px 0; /* Adjust margin */
+            }
+
+            #startButton {
+                padding: 10px 20px; /* Smaller padding for the button */
+                font-size: 30px; /* Smaller font size for the button text */
+            }
+            h1 {
+            font-size: 25px;
+
+            }
+        }

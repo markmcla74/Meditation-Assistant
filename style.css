@@ -24,6 +24,11 @@
            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5); /* Add a subtle box shadow */
            border-radius: 30px;
         }
+
+        #player-container {
+            display: none;
+        }
+
         h1 {
             font-size: 25px;
 
@@ -65,23 +70,12 @@
             border: none;
             border-radius: 10px;
             cursor: pointer;
-            display: block;
+            display: none;
             margin: 0 auto;
         }
         #startButton:hover {
             background-color: #0056b3;
         }
-
-        .video {
-            aspect-ratio: 16 / 9;
-            width: 60%;
-            @media (max-width: 768px) {
-            width: 95%;
-            }
-            padding: 10px;
-
-        }
-
 
         .mainImageFormat {
             display: block;

@@ -5,7 +5,7 @@
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
 
-        let elapsedTime, lastTime, firstPassTime, isFirstLoop, sawtoothValue, animationFrameId, t1, t2, t3, t4, t5, t6;
+        let elapsedTime, lastTime, firstPassTime, isFirstLoop, sawtoothValue, animationFrameId, t1, t2, t3, t4, t5, t6, player;
         t1 = 30000;  // 30 sec
         t2 = 180000; // 3 min
         t3 = 270000; // 4 min 30 sec
@@ -15,11 +15,31 @@
         lastTime = 0;
         isFirstLoop = 1;
         firstPassTime = 0;
+        startButton.style.display = 'none'; // Hide the button
+
+        // Add a custom button to the player
+        // Load and play a specific video
+        function onYouTubeIframeAPIReady() {
+            //console.log("api is loaded");
+            player = new YT.Player('player',{
+            videoId: 'EwPC4MqbL70',
+            events: {
+              'onReady': onPlayerReady
+              }
+           });
+        }
+
+        function onPlayerReady(event) {
+            startButton.style.display = 'block'; // show the button
+            startButton.addEventListener('click', function() {
+            event.target.playVideo();
+            });
+        }
+
         function startFlashing() {
             contentDiv.style.display = 'none'; // Hide the text content
             canvas.style.display = 'block'; // Show the canvas
             startButton.style.display = 'none'; // Hide the button
-
 
             // Play flashing lights signals with requestAnimationFrame
             function playSignals(timestamp) {
@@ -84,19 +104,19 @@
         function signal01(elapsedTime){
              let periodGreen, slopeGreen, dcOffsetGreen, periodBlue, slopeBlue, dcOffsetBlue;
              if (elapsedTime < t1/5){
-               periodGreen = 1500; //in milliseconds
+               periodGreen = 4000; //in milliseconds
              }
              if ((elapsedTime >=t1/5) && (elapsedTime < 2*t1/5)){
-               periodGreen = 1000;
+               periodGreen = 2500;
              }
              if ((elapsedTime >=2*t1/5) && (elapsedTime < 3*t1/5)){
-               periodGreen = 750;
+               periodGreen = 1500;
              }
              if ((elapsedTime >=3*t1/5) && (elapsedTime < 4*t1/5)){
-               periodGreen = 500;
+               periodGreen = 1000;
              }
              if ((elapsedTime >=4*t1/5) && (elapsedTime < t1)){
-               periodGreen = 250;
+               periodGreen = 500;
              }
              slopeGreen = 200/periodGreen; //Height of sawtooth arbitrary decision. Choose 200, so when duty cycle = 50%, sawtooth goes from -100 to 100
              dcOffsetGreen = -100; //dcOffset controls duty cycle.
@@ -104,7 +124,7 @@
              //dcOffset duty cycle ranges from 0 to -200. -100 = 50% duty cycle,
              //dutyCycle = (dcOffset/MAXdcOffset)*100%
              //Note: duty cycles too far from 50% look a little glitchy.
-             pattern05(elapsedTime, periodGreen, slopeGreen, dcOffsetGreen);
+             pattern07(elapsedTime, periodGreen, slopeGreen, dcOffsetGreen);
         }
 
         function signal02(elapsedTime){
@@ -236,50 +256,55 @@
         }
 
         function pattern04(elapsedTime, period, slope, dcOffset) {
-             let sawtoothValue, scaleRed, scaleGreen, scaleBlue;
+             let sawtoothValue, triangleValue, scaleRed, scaleGreen, scaleBlue;
              sawtoothValue = slope*(elapsedTime % period) + dcOffset;
+             triangleValue = Math.abs(Math.abs(sawtoothValue) + dcOffset);
              //rgb value of dark orchid is: (153, 50, 204)
-             //absolute value of (sawtoothValue/dcOffset) goes from 1 to 0, and then back to 1, during one period
-             //Smoothly transition from dark orchid, rgb(153,50,204), to black, rgb(0,0,0), and back to dark orchid
-             scaleRed = Math.round(Math.abs(sawtoothValue/dcOffset)*153);
-             scaleGreen = Math.round(Math.abs(sawtoothValue/dcOffset)*50);
-             scaleBlue = Math.round(Math.abs(sawtoothValue/dcOffset)*204);
+             //(triangleValue/dcOffset) goes from 0 to 1, and then back to 0, during one period
+             //Smoothly transition from black to dark orchid, rgb(153,50,204), back to black, rgb(0,0,0)
+             scaleRed = Math.round(Math.abs(triangleValue/dcOffset)*153);
+             scaleGreen = Math.round(Math.abs(triangleValue/dcOffset)*50);
+             scaleBlue = Math.round(Math.abs(triangleValue/dcOffset)*204);
              ctx.fillStyle = "rgb("+scaleRed+", "+scaleGreen+", "+scaleBlue+")";
         }
 
         function pattern05(elapsedTime, period, slope, dcOffset) {
-             let sawtoothValue, scaleRed, scaleGreen, scaleBlue;
+             let sawtoothValue, triangleValue, scaleRed, scaleGreen, scaleBlue;
              sawtoothValue = slope*(elapsedTime % period) + dcOffset;
+             triangleValue = Math.abs(Math.abs(sawtoothValue) + dcOffset);
+
              //rgb value of spring green is: rgb(0,255,127)
-             //absolute value of (sawtoothValue/dcOffset) goes from 1 to 0, and then back to 1, during one period
-             //Smoothly transition from spring green, rgb(0,255,127), to black, rgb(0,0,0), and back to spring green
-             scaleRed = Math.round(Math.abs(sawtoothValue/dcOffset)*0);
-             scaleGreen = Math.round(Math.abs(sawtoothValue/dcOffset)*255);
-             scaleBlue = Math.round(Math.abs(sawtoothValue/dcOffset)*127);
+             //(triangleValue/dcOffset) goes from 0 to 1, and then back to 0, during one period
+             //Smoothly transition from black to spring green, rgb(0,255,127), back to black, rgb(0,0,0)
+             scaleRed = Math.round(Math.abs(triangleValue/dcOffset)*0);
+             scaleGreen = Math.round(Math.abs(triangleValue/dcOffset)*255);
+             scaleBlue = Math.round(Math.abs(triangleValue/dcOffset)*127);
              ctx.fillStyle = "rgb("+scaleRed+", "+scaleGreen+", "+scaleBlue+")";
         }
 
          function pattern06(elapsedTime, period, slope, dcOffset) {
-             let sawtoothValue, scaleRed, scaleGreen, scaleBlue;
+             let sawtoothValue, triangleValue, scaleRed, scaleGreen, scaleBlue;
              sawtoothValue = slope*(elapsedTime % period) + dcOffset;
+             triangleValue = Math.abs(Math.abs(sawtoothValue) + dcOffset);
              //rgb value of sky blue is: rgb(135,206,235)
-             //absolute value of (sawtoothValue/dcOffset) goes from 1 to 0, and then back to 1, during one period
-             //Smoothly transition from sky blue, rgb(135,206,235), to black, rgb(0,0,0), and back to sky blue
-             scaleRed = Math.round(Math.abs(sawtoothValue/dcOffset)*135);
-             scaleGreen = Math.round(Math.abs(sawtoothValue/dcOffset)*206);
-             scaleBlue = Math.round(Math.abs(sawtoothValue/dcOffset)*235);
+             //(triangleValue/dcOffset) goes from 0 to 1, and then back to 0, during one period
+             //Smoothly transition from black to sky blue, rgb(135,206,235), back to black, rgb(0,0,0)
+             scaleRed = Math.round(Math.abs(triangleValue/dcOffset)*135);
+             scaleGreen = Math.round(Math.abs(triangleValue/dcOffset)*206);
+             scaleBlue = Math.round(Math.abs(triangleValue/dcOffset)*235);
              ctx.fillStyle = "rgb("+scaleRed+", "+scaleGreen+", "+scaleBlue+")";
         }
 
         function pattern07(elapsedTime, period, slope, dcOffset) {
-             let sawtoothValue, scaleRed, scaleGreen, scaleBlue;
+             let sawtoothValue, triangleValue, scaleRed, scaleGreen, scaleBlue;
              sawtoothValue = slope*(elapsedTime % period) + dcOffset;
+             triangleValue = Math.abs(Math.abs(sawtoothValue) + dcOffset);
              //rgb value of custom orange is: rgb(248,196,113)
-             //absolute value of (sawtoothValue/dcOffset) goes from 1 to 0, and then back to 1, during one period
-             //Smoothly transition from orange, rgb(248,196,113), to black, rgb(0,0,0), and back to orange
-             scaleRed = Math.round(Math.abs(sawtoothValue/dcOffset)*248);
-             scaleGreen = Math.round(Math.abs(sawtoothValue/dcOffset)*196);
-             scaleBlue = Math.round(Math.abs(sawtoothValue/dcOffset)*113);
+             //(triangleValue/dcOffset) goes from 0 to 1, and then back to 0, during one period
+             //Smoothly transition from black to custom orange, rgb(248,196,113), back to black, rgb(0,0,0)
+             scaleRed = Math.round(Math.abs(triangleValue/dcOffset)*248);
+             scaleGreen = Math.round(Math.abs(triangleValue/dcOffset)*196);
+             scaleBlue = Math.round(Math.abs(triangleValue/dcOffset)*113);
              ctx.fillStyle = "rgb("+scaleRed+", "+scaleGreen+", "+scaleBlue+")";
         }
 
@@ -298,14 +323,16 @@
 
             // Resetting the page to its initial state
             contentDiv.style.display = 'block';
-            startButton.style.display = 'block';
+            //startButton.style.display = 'block';
             canvas.style.display = 'none';
         }
 
         function stopHandler(event) {
             // Preventing the event from re-triggering start
             if (event.target !== startButton) {
-                stopFlashing();
+                //stopFlashing();
+                location.reload();
+                //console.log(player.getPlayerState());
             }
         }
 

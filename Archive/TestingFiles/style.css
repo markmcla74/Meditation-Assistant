@@ -1,0 +1,129 @@
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: auto;
+        }
+        #content {
+           /* max-width: 800px; */
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        h1 {
+            font-size: 28px;
+            font-weight: 700;
+        }
+        p {
+            margin: 15px 0;
+            line-height: 1.6;
+            font-size: 16px;
+            max-width: 600px;
+        }
+        a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+
+        ul, li {
+            margin-bottom: 15px; /* Increase spacing between bullet points */
+        }
+
+        canvas {
+            display: none;
+            background: black;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        #startButton {
+            margin-top: 40px;
+            padding: 25px 40px;
+            font-size: 35px;
+            color: white;
+            background-color: #007bff;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            display: block;
+            margin: 0 auto;
+        }
+        #startButton:hover {
+            background-color: #0056b3;
+        }
+
+        .info {
+            margin-top: 20px;
+            margin-bottom: 100px;
+            background-color: #eef;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        .info h2 {
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+        .info ul {
+            text-align: left;
+            list-style: inside; /* Bullets inside the div */
+        }
+
+        .explanation {
+            max-width: 800px; /* Limit the width */
+            margin: auto; /* Center the div */
+            padding: 20px; /* Add padding */
+            text-align: left;
+        }
+
+        .explanation h2 {
+            font-size: 22px;
+            margin-bottom: 30px;
+        }
+
+
+
+        @media (max-width: 768px) {
+            #content {
+                max-width: 100%; /* Use full width for smaller screens */
+                padding: 10px; /* Reduce padding */
+                margin: 10px 0; /* Adjust margin */
+            }
+
+
+
+
+            h1 {
+                font-size: 40px; /* Smaller font size for headers */
+            }
+
+             h2 {
+                font-size: 40px; /* Smaller font size for headers */
+            }
+            p {
+                font-size: 14px; /* Smaller font size for paragraphs */
+            }
+
+            .info {
+                padding: 10px; /* Reduce padding in the info section */
+            }
+
+            .info h2, .explanation h2 {
+                font-size: 20px; /* Smaller font size for sub-headers */
+            }
+
+            #startButton {
+                padding: 10px 20px; /* Smaller padding for the button */
+                font-size: 30px; /* Smaller font size for the button text */
+            }
+        }

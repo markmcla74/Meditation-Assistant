@@ -90,6 +90,19 @@
             }
         }
 
+        .logoImageFormat {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 35%;
+            @media (max-width: 600px) {
+                width: 90%;
+            }
+            @media (min-width: 950px) {
+                width: 50%;
+            }
+        }
+
         @media (max-width: 768px) {
             #content {
                 max-width: 100%; /* Use full width for smaller screens */

@@ -29,6 +29,25 @@
             display: none;
         }
 
+        #myParagraph {
+            /*background-color: lightgrey;*/
+            border: 1px solid;
+            padding: 10px;
+            margin: 10px;
+            border-radius: 30px;
+
+        }
+
+        #myContactImage {
+            width: 26%;
+                @media (max-width: 600px) {
+                width: 80%;
+            }
+            @media (min-width: 950px) {
+            width: 20%;
+            }
+        }
+
         h1 {
             font-size: 25px;
 
@@ -37,7 +56,7 @@
             margin: 15px 0;
             line-height: 1.6;
             font-size: 16px;
-            max-width: 600px;
+            max-width: 1200px;
             text-align: left;
         }
         a {

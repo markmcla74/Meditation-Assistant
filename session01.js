@@ -17,6 +17,15 @@
         firstPassTime = 0;
         startButton.style.display = 'none'; // Hide the button
 
+        window.addEventListener( "pageshow", function ( event ) {
+        var perfEntries = performance.getEntriesByType("navigation");
+        if (perfEntries[0].type === "back_forward") {
+        location.reload();
+         }
+        });
+
+
+
         // Add a custom button to the player
         // Load and play a specific video
         function onYouTubeIframeAPIReady() {

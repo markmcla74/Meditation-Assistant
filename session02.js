@@ -331,7 +331,7 @@
             // Preventing the event from re-triggering start
             if (event.target !== startButton) {
                 //stopFlashing();
-                location.reload(); //refresh the webpage
+                location.reload(true); //refresh the webpage
                 //console.log(player.getPlayerState());
             }
         }

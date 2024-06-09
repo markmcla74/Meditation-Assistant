@@ -91,10 +91,10 @@
             animationFrameId = requestAnimationFrame(playSignals);
 
             // Prepare to stop
-            //startButton.removeEventListener('click', startFlashing);
-            //startButton.addEventListener('click', stopFlashing);
-            //startButton.textContent = 'Stop';
-            //startButton.style.display = 'block';
+            startButton.removeEventListener('click', startFlashing);
+            startButton.addEventListener('click', stopFlashing);
+            startButton.textContent = 'Stop';
+            startButton.style.display = 'block';
 
             // Add global event listeners for stopping
             document.addEventListener('click', stopHandler);
@@ -308,29 +308,29 @@
              ctx.fillStyle = "rgb("+scaleRed+", "+scaleGreen+", "+scaleBlue+")";
         }
 
-       // function stopFlashing() {
+        function stopFlashing() {
 
 
-       //     if (animationFrameId) cancelAnimationFrame(animationFrameId);
-       //     startButton.textContent = 'Start';
-       //     startButton.removeEventListener('click', stopFlashing);
-       //     startButton.addEventListener('click', startFlashing);
-       //     isFirstLoop = 1;
+            if (animationFrameId) cancelAnimationFrame(animationFrameId);
+            startButton.textContent = 'Start';
+            startButton.removeEventListener('click', stopFlashing);
+            startButton.addEventListener('click', startFlashing);
+            isFirstLoop = 1;
 
             // Remove global event listeners
-       //     document.removeEventListener('click', stopHandler);
-       //     document.removeEventListener('keydown', stopHandler);
+            document.removeEventListener('click', stopHandler);
+            document.removeEventListener('keydown', stopHandler);
 
             // Resetting the page to its initial state
-       //     contentDiv.style.display = 'block';
-            //startButton.style.display = 'block';
-       //     canvas.style.display = 'none';
-       // }
+            contentDiv.style.display = 'block';
+            startButton.style.display = 'block';
+            canvas.style.display = 'none';
+        }
 
         function stopHandler(event) {
             // Preventing the event from re-triggering start
             if (event.target !== startButton) {
-                //stopFlashing();
+                stopFlashing();
                 location.reload(true); //refresh the webpage
                 //console.log(player.getPlayerState());
             }

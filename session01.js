@@ -108,7 +108,7 @@
              finalPeriod = 300;
              //console.log("finalPeriod", finalPeriod);
              periodColor1 = initialPeriod + ((finalPeriod - initialPeriod)/timeInterval)*(elapsedTime - 0); //gradually decrease period (i.e. increase frequency) during time interval
-             periodColor1 = Math.round(periodColor1/300)*300; //round periodColor1 to nearest 50 milliseconds
+             periodColor1 = Math.round(periodColor1/300)*300; //round periodColor1 to nearest 300 milliseconds
              //console.log("periodColor1", periodColor1);
              slopeColor1 = 200/periodColor1; //Height of sawtooth arbitrary decision. Choose 200, so when duty cycle = 50%, sawtooth goes from -100 to 100
              dcOffsetColor1 = -100; //dcOffset controls duty cycle.
@@ -120,30 +120,30 @@
         }
 
         function signal02(elapsedTime){
-             let periodColor1, slopeColor1, dcOffsetColor1;
-             periodColor1 = 300;
-             slopeColor1 = 200/periodColor1;
-             dcOffsetColor1 = -100;
-             pattern02(elapsedTime, periodColor1, slopeColor1, dcOffsetColor1);
+            // let periodColor1, slopeColor1, dcOffsetColor1;
+            // periodColor1 = 300;
+            // slopeColor1 = 200/periodColor1;
+            // dcOffsetColor1 = -100;
+            // pattern02(elapsedTime, periodColor1, slopeColor1, dcOffsetColor1);
 
-             //let periodColor1, slopeColor1, dcOffsetColor1, timeInterval, initialPeriod, finalPeriod;
-             //timeInterval = (t2 - t1);
-             //initialPeriod = 300; //in milliseconds
-             //finalPeriod = 150;
-             //periodColor1 = initialPeriod + ((finalPeriod - initialPeriod)/timeInterval)*(elapsedTime - t1); //gradually decrease period (i.e. increase frequency) during time interval
-             //periodColor1 = Math.round(periodColor1/150)*150; //round periodColor1 to nearest 50 milliseconds
-             //slopeColor1 = 200/periodColor1; //Height of sawtooth arbitrary decision. Choose 200, so when duty cycle = 50%, sawtooth goes from -100 to 100
-             //dcOffsetColor1 = -100; //dcOffset controls duty cycle.
+             let periodColor1, slopeColor1, dcOffsetColor1, timeInterval, initialPeriod, finalPeriod;
+             timeInterval = (t2 - t1);
+             initialPeriod = 250; //in milliseconds
+             finalPeriod = 125;
+             periodColor1 = initialPeriod + ((finalPeriod - initialPeriod)/timeInterval)*(elapsedTime - t1); //gradually decrease period (i.e. increase frequency) during time interval
+             periodColor1 = Math.round(periodColor1/125)*125; //round periodColor1 to nearest 125 milliseconds
+             slopeColor1 = 200/periodColor1; //Height of sawtooth arbitrary decision. Choose 200, so when duty cycle = 50%, sawtooth goes from -100 to 100
+             dcOffsetColor1 = -100; //dcOffset controls duty cycle.
 
              //dcOffset duty cycle ranges from 0 to -200. -100 = 50% duty cycle,
              //dutyCycle = (dcOffset/MAXdcOffset)*100%
              //Note: duty cycles too far from 50% look a little glitchy.
-             //pattern02(elapsedTime, periodColor1, slopeColor1, dcOffsetColor1);
+             pattern02(elapsedTime, periodColor1, slopeColor1, dcOffsetColor1);
         }
 
         function signal03(elapsedTime){
            let periodColor1, slopeColor1, dcOffsetColor1;
-             periodColor1 = 300;
+             periodColor1 = 125;
              slopeColor1 = 200/periodColor1;
              dcOffsetColor1 = -100;
              pattern03(elapsedTime, periodColor1, slopeColor1, dcOffsetColor1);
@@ -168,7 +168,7 @@
 
         function signal04(elapsedTime){
             let periodColor1, slopeColor1, dcOffsetColor1;
-             periodColor1 = 300;
+             periodColor1 = 150;
              slopeColor1 = 200/periodColor1;
              dcOffsetColor1 = -100;
              pattern02(elapsedTime, periodColor1, slopeColor1, dcOffsetColor1);
@@ -189,7 +189,7 @@
 
         function signal05(elapsedTime){
              let periodColor1, slopeColor1, dcOffsetColor1;
-             periodColor1 = 300;
+             periodColor1 = 200;
              slopeColor1 = 200/periodColor1;
              dcOffsetColor1 = -100;
              pattern02(elapsedTime, periodColor1, slopeColor1, dcOffsetColor1);
@@ -214,7 +214,7 @@
              initialPeriod = 300; //in milliseconds
              finalPeriod = 3000;
              periodColor1 = initialPeriod + ((finalPeriod - initialPeriod)/timeInterval)*(elapsedTime - t5); //gradually decrease period (i.e. increase frequency) during time interval
-             periodColor1 = Math.round(periodColor1/300)*300; //round periodColor1 to nearest 50 milliseconds
+             periodColor1 = Math.round(periodColor1/300)*300; //round periodColor1 to nearest 300 milliseconds
              slopeColor1 = 200/periodColor1; //Height of sawtooth arbitrary decision. Choose 200, so when duty cycle = 50%, sawtooth goes from -100 to 100
              dcOffsetColor1 = -100; //dcOffset controls duty cycle.
 

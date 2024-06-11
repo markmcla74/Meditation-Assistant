@@ -102,22 +102,14 @@
         }
         //combine "patterns" into "signals"
         function signal01(elapsedTime){
-             let periodColor1, slopeColor1, dcOffsetColor1;
-             if (elapsedTime < t1/5){
-               periodColor1 = 4000; //in milliseconds
-             }
-             if ((elapsedTime >=t1/5) && (elapsedTime < 2*t1/5)){
-               periodColor1 = 2500;
-             }
-             if ((elapsedTime >=2*t1/5) && (elapsedTime < 3*t1/5)){
-               periodColor1 = 1500;
-             }
-             if ((elapsedTime >=3*t1/5) && (elapsedTime < 4*t1/5)){
-               periodColor1 = 1000;
-             }
-             if ((elapsedTime >=4*t1/5) && (elapsedTime < t1)){
-               periodColor1 = 500;
-             }
+             let periodColor1, slopeColor1, dcOffsetColor1, timeInterval, initialPeriod, finalPeriod;
+             timeInterval = (t1 - 0);
+             initialPeriod = 4000; //in milliseconds
+             finalPeriod = 400;
+             //console.log("finalPeriod", finalPeriod);
+             periodColor1 = initialPeriod + ((finalPeriod - initialPeriod)/timeInterval)*(elapsedTime - 0); //gradually decrease period (i.e. increase frequency) during time interval
+             periodColor1 = Math.round(periodColor1/400)*400; //round periodColor1 to nearest 50 milliseconds
+             console.log("periodColor1", periodColor1);
              slopeColor1 = 200/periodColor1; //Height of sawtooth arbitrary decision. Choose 200, so when duty cycle = 50%, sawtooth goes from -100 to 100
              dcOffsetColor1 = -100; //dcOffset controls duty cycle.
 
@@ -128,8 +120,12 @@
         }
 
         function signal02(elapsedTime){
-             let periodColor1, slopeColor1, dcOffsetColor1;
-             periodColor1 = 250;
+             let periodColor1, slopeColor1, dcOffsetColor1, timeInterval, initialPeriod, finalPeriod;
+             timeInterval = (t2 - t1);
+             initialPeriod = 300; //in milliseconds
+             finalPeriod = 150;
+             periodColor1 = initialPeriod + ((finalPeriod - initialPeriod)/timeInterval)*(elapsedTime - t1); //gradually decrease period (i.e. increase frequency) during time interval
+             periodColor1 = Math.round(periodColor1/150)*150; //round periodColor1 to nearest 50 milliseconds
              slopeColor1 = 200/periodColor1; //Height of sawtooth arbitrary decision. Choose 200, so when duty cycle = 50%, sawtooth goes from -100 to 100
              dcOffsetColor1 = -100; //dcOffset controls duty cycle.
 
@@ -160,8 +156,12 @@
         }
 
         function signal04(elapsedTime){
-             let periodColor1, slopeColor1, dcOffsetColor1;
-             periodColor1 = 250;
+             let periodColor1, slopeColor1, dcOffsetColor1, timeInterval, initialPeriod, finalPeriod;
+             timeInterval = (t4 - t3);
+             initialPeriod = 150; //in milliseconds
+             finalPeriod = 300;
+             periodColor1 = initialPeriod + ((finalPeriod - initialPeriod)/timeInterval)*(elapsedTime - t3); //gradually decrease period (i.e. increase frequency) during time interval
+             periodColor1 = Math.round(periodColor1/150)*150; //round periodColor1 to nearest 50 milliseconds
              slopeColor1 = 200/periodColor1; //Height of sawtooth arbitrary decision. Choose 200, so when duty cycle = 50%, sawtooth goes from -100 to 100
              dcOffsetColor1 = -100; //dcOffset controls duty cycle.
 
@@ -172,8 +172,12 @@
         }
 
         function signal05(elapsedTime){
-             let periodColor1, slopeColor1, dcOffsetColor1;
-             periodColor1 = 250;
+             let periodColor1, slopeColor1, dcOffsetColor1, timeInterval, initialPeriod, finalPeriod;
+             timeInterval = (t5 - t4);
+             initialPeriod = 300; //in milliseconds
+             finalPeriod = 600;
+             periodColor1 = initialPeriod + ((finalPeriod - initialPeriod)/timeInterval)*(elapsedTime - t4); //gradually decrease period (i.e. increase frequency) during time interval
+             periodColor1 = Math.round(periodColor1/300)*300; //round periodColor1 to nearest 50 milliseconds
              slopeColor1 = 200/periodColor1; //Height of sawtooth arbitrary decision. Choose 200, so when duty cycle = 50%, sawtooth goes from -100 to 100
              dcOffsetColor1 = -100; //dcOffset controls duty cycle.
 
@@ -184,22 +188,12 @@
         }
 
         function signal06(elapsedTime){
-            let periodColor1, slopeColor1, dcOffsetColor1;
-             if (elapsedTime < (t5 + (t6-t5)/5)){
-               periodColor1 = 250; //in milliseconds
-             }
-             if ((elapsedTime >=(t5+(t6-t5)/5)) && (elapsedTime < (t5 + 2*(t6-t5)/5))){
-               periodColor1 = 500;
-             }
-             if ((elapsedTime >=(t5+ 2*(t6-t5)/5)) && (elapsedTime < (t5 + 3*(t6-t5)/5))){
-               periodColor1 = 750;
-             }
-             if ((elapsedTime >=(t5 + 3*(t6-t5)/5)) && (elapsedTime < (t5+ 4*(t6-t5)/5))){
-               periodColor1 = 1000;
-             }
-             if ((elapsedTime >=(t5+ 4*(t6-t5)/5)) && (elapsedTime < t6)){
-               periodColor1 = 1500;
-             }
+            let periodColor1, slopeColor1, dcOffsetColor1, timeInterval, initialPeriod, finalPeriod;
+             timeInterval = (t6 - t5);
+             initialPeriod = 600; //in milliseconds
+             finalPeriod = 6000;
+             periodColor1 = initialPeriod + ((finalPeriod - initialPeriod)/timeInterval)*(elapsedTime - t5); //gradually decrease period (i.e. increase frequency) during time interval
+             periodColor1 = Math.round(periodColor1/600)*600; //round periodColor1 to nearest 50 milliseconds
              slopeColor1 = 200/periodColor1; //Height of sawtooth arbitrary decision. Choose 200, so when duty cycle = 50%, sawtooth goes from -100 to 100
              dcOffsetColor1 = -100; //dcOffset controls duty cycle.
 
@@ -225,6 +219,7 @@
              let sawtoothValue, triangleValue, scaleRed, scaleGreen, scaleBlue;
              sawtoothValue = slope*(elapsedTime % period) + dcOffset;
              triangleValue = Math.abs(Math.abs(sawtoothValue) + dcOffset);
+             //console.log("triangleValue", triangleValue);
              //rgb value of dark orchid is: (153, 50, 204)
              //(triangleValue/dcOffset) goes from 0 to 1, and then back to 0, during one period
              //Smoothly transition from black to dark orchid, rgb(153,50,204), back to black, rgb(0,0,0)
@@ -238,7 +233,6 @@
              let sawtoothValue, triangleValue, scaleRed, scaleGreen, scaleBlue;
              sawtoothValue = slope*(elapsedTime % period) + dcOffset;
              triangleValue = Math.abs(Math.abs(sawtoothValue) + dcOffset);
-
              //rgb value of spring green is: rgb(0,255,127)
              //(triangleValue/dcOffset) goes from 0 to 1, and then back to 0, during one period
              //Smoothly transition from black to spring green, rgb(0,255,127), back to black, rgb(0,0,0)

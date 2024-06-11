@@ -5,13 +5,11 @@
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
 
-        let elapsedTime, lastTime, firstPassTime, isFirstLoop, sawtoothValue, animationFrameId, t1, t2, t3, t4, t5, t6, player;
-        t1 = 30000;  // 30 sec
+        let elapsedTime, lastTime, firstPassTime, isFirstLoop, sawtoothValue, animationFrameId, t1, t2, t3, t4, player;
+        t1 = 60000;  // 1 min
         t2 = 180000; // 3 min
         t3 = 270000; // 4 min 30 sec
-        t4 = 390000; // 6 min 30 sec
-        t5 = 480000; // 8 min
-        t6 = 570000; // 9 min 30 sec
+        t4 = 355000; // 5 min 55 sec
         lastTime = 0;
         isFirstLoop = 1;
         firstPassTime = 0;
@@ -69,16 +67,8 @@
                   signal04(elapsedTime);
 
                 }
-                if ((elapsedTime >= t4) && (elapsedTime < t5)){
+                if (elapsedTime >= t4){
                   signal05(elapsedTime);
-
-                }
-                if ((elapsedTime >= t5) && (elapsedTime < t6)){
-                  signal06(elapsedTime);
-
-                }
-                if (elapsedTime >= t6){
-                  signal07(elapsedTime);
 
                 }
 
@@ -102,163 +92,106 @@
         }
         //combine "patterns" into "signals"
         function signal01(elapsedTime){
-             let periodGreen, slopeGreen, dcOffsetGreen, periodBlue, slopeBlue, dcOffsetBlue;
-             if (elapsedTime < t1/5){
-               periodGreen = 4000; //in milliseconds
-             }
-             if ((elapsedTime >=t1/5) && (elapsedTime < 2*t1/5)){
-               periodGreen = 2500;
-             }
-             if ((elapsedTime >=2*t1/5) && (elapsedTime < 3*t1/5)){
-               periodGreen = 1500;
-             }
-             if ((elapsedTime >=3*t1/5) && (elapsedTime < 4*t1/5)){
-               periodGreen = 1000;
-             }
-             if ((elapsedTime >=4*t1/5) && (elapsedTime < t1)){
-               periodGreen = 500;
-             }
-             slopeGreen = 200/periodGreen; //Height of sawtooth arbitrary decision. Choose 200, so when duty cycle = 50%, sawtooth goes from -100 to 100
-             dcOffsetGreen = -100; //dcOffset controls duty cycle.
+             let periodColor1, slopeColor1, dcOffsetColor1, timeInterval, initialPeriod, finalPeriod;
+             timeInterval = (t1 - 0);
+             initialPeriod = 2500; //in milliseconds
+             finalPeriod = 250;
+             //console.log("finalPeriod", finalPeriod);
+             periodColor1 = initialPeriod + ((finalPeriod - initialPeriod)/timeInterval)*(elapsedTime - 0); //gradually decrease period (i.e. increase frequency) during time interval
+             periodColor1 = Math.round(periodColor1/250)*250; //round periodColor1 to nearest 300 milliseconds
+             //console.log("periodColor1", periodColor1);
+             slopeColor1 = 200/periodColor1; //Height of sawtooth arbitrary decision. Choose 200, so when duty cycle = 50%, sawtooth goes from -100 to 100
+             dcOffsetColor1 = -100; //dcOffset controls duty cycle.
 
              //dcOffset duty cycle ranges from 0 to -200. -100 = 50% duty cycle,
              //dutyCycle = (dcOffset/MAXdcOffset)*100%
              //Note: duty cycles too far from 50% look a little glitchy.
-             pattern07(elapsedTime, periodGreen, slopeGreen, dcOffsetGreen);
+             pattern04(elapsedTime, periodColor1, slopeColor1, dcOffsetColor1);
         }
 
         function signal02(elapsedTime){
-             let periodGreen, slopeGreen, dcOffsetGreen;
-             periodGreen = 250;
-             slopeGreen = 200/periodGreen; //Height of sawtooth arbitrary decision. Choose 200, so when duty cycle = 50%, sawtooth goes from -100 to 100
-             dcOffsetGreen = -100; //dcOffset controls duty cycle.
+            // let periodColor1, slopeColor1, dcOffsetColor1;
+            // periodColor1 = 300;
+            // slopeColor1 = 200/periodColor1;
+            // dcOffsetColor1 = -100;
+            // pattern02(elapsedTime, periodColor1, slopeColor1, dcOffsetColor1);
+
+             let periodColor1, slopeColor1, dcOffsetColor1, timeInterval, initialPeriod, finalPeriod;
+             timeInterval = (t2 - t1);
+             initialPeriod = 250; //in milliseconds
+             finalPeriod = 125;
+             periodColor1 = initialPeriod + ((finalPeriod - initialPeriod)/timeInterval)*(elapsedTime - t1); //gradually decrease period (i.e. increase frequency) during time interval
+             periodColor1 = Math.round(periodColor1/125)*125; //round periodColor1 to nearest 125 milliseconds
+             slopeColor1 = 200/periodColor1; //Height of sawtooth arbitrary decision. Choose 200, so when duty cycle = 50%, sawtooth goes from -100 to 100
+             dcOffsetColor1 = -100; //dcOffset controls duty cycle.
 
              //dcOffset duty cycle ranges from 0 to -200. -100 = 50% duty cycle,
              //dutyCycle = (dcOffset/MAXdcOffset)*100%
              //Note: duty cycles too far from 50% look a little glitchy.
-             pattern05(elapsedTime, periodGreen, slopeGreen, dcOffsetGreen);
+             pattern02(elapsedTime, periodColor1, slopeColor1, dcOffsetColor1);
         }
 
         function signal03(elapsedTime){
-             let periodGreen, slopeGreen, dcOffsetGreen, periodBlue, slopeBlue, dcOffsetBlue;
-             periodGreen = 150; //in milliseconds
-             slopeGreen = 200/periodGreen; //Height of sawtooth arbitrary decision. Choose 200, so when duty cycle = 50%, sawtooth goes from -100 to 100
-             dcOffsetGreen = -100; //dcOffset controls duty cycle.
-             periodBlue = 150; //in milliseconds
-             slopeBlue = 200/periodBlue; //Height of sawtooth arbitrary decision. Choose 200, so when duty cycle = 50%, sawtooth goes from -100 to 100
-             dcOffsetBlue = -100; //dcOffset controls duty cycle.
-             //dcOffset duty cycle ranges from 0 to -200. -100 = 50% duty cycle,
-             //dutyCycle = (dcOffset/MAXdcOffset)*100%
-             //Note: duty cycles too far from 50% look a little glitchy.
-             if (((Math.floor(elapsedTime/100)) % 2)==0){
-                   pattern05(elapsedTime, periodGreen, slopeGreen, dcOffsetGreen);
-                   }
-             if (((Math.floor(elapsedTime/100)) % 2)==1){
-                   pattern06(elapsedTime, periodBlue, slopeBlue, dcOffsetBlue);
-                   }
+           let periodColor1, slopeColor1, dcOffsetColor1;
+             periodColor1 = 125;
+             slopeColor1 = 200/periodColor1;
+             dcOffsetColor1 = -100;
+             pattern03(elapsedTime, periodColor1, slopeColor1, dcOffsetColor1);
+           //  let periodColor1, slopeColor1, dcOffsetColor1, periodColor2, slopeColor2, dcOffsetColor2;
+           //  periodColor1 = 150; //in milliseconds
+           //  slopeColor1 = 200/periodColor1; //Height of sawtooth arbitrary decision. Choose 200, so when duty cycle = 50%, sawtooth goes from -100 to 100
+           //  dcOffsetColor1 = -100; //dcOffset controls duty cycle.
+           //  periodColor2 = 150; //in milliseconds
+           //  slopeColor2 = 200/periodColor2; //Height of sawtooth arbitrary decision. Choose 200, so when duty cycle = 50%, sawtooth goes from -100 to 100
+           //  dcOffsetColor2 = -100; //dcOffset controls duty cycle.
+           //  //dcOffset duty cycle ranges from 0 to -200. -100 = 50% duty cycle,
+           //  //dutyCycle = (dcOffset/MAXdcOffset)*100%
+           //  //Note: duty cycles too far from 50% look a little glitchy.
+           //  if (((Math.floor(elapsedTime/100)) % 2)==0){
+           //        pattern01(elapsedTime, periodColor1, slopeColor1, dcOffsetColor1);
+           //        }
+           //  if (((Math.floor(elapsedTime/100)) % 2)==1){
+           //        pattern02(elapsedTime, periodColor2, slopeColor2, dcOffsetColor2);
+           //        }
 
         }
 
         function signal04(elapsedTime){
-             let periodGreen, slopeGreen, dcOffsetGreen;
-             periodGreen = 250;
-             slopeGreen = 200/periodGreen; //Height of sawtooth arbitrary decision. Choose 200, so when duty cycle = 50%, sawtooth goes from -100 to 100
-             dcOffsetGreen = -100; //dcOffset controls duty cycle.
+            let periodColor1, slopeColor1, dcOffsetColor1, timeInterval, initialPeriod, finalPeriod;
+             timeInterval = (t4 - t3);
+             initialPeriod = 250; //in milliseconds
+             finalPeriod = 2500;
+             periodColor1 = initialPeriod + ((finalPeriod - initialPeriod)/timeInterval)*(elapsedTime - t3); //gradually decrease period (i.e. increase frequency) during time interval
+             periodColor1 = Math.round(periodColor1/250)*250; //round periodColor1 to nearest 300 milliseconds
+             slopeColor1 = 200/periodColor1; //Height of sawtooth arbitrary decision. Choose 200, so when duty cycle = 50%, sawtooth goes from -100 to 100
+             dcOffsetColor1 = -100; //dcOffset controls duty cycle.
 
              //dcOffset duty cycle ranges from 0 to -200. -100 = 50% duty cycle,
              //dutyCycle = (dcOffset/MAXdcOffset)*100%
              //Note: duty cycles too far from 50% look a little glitchy.
-             pattern05(elapsedTime, periodGreen, slopeGreen, dcOffsetGreen);
+             pattern04(elapsedTime, periodColor1, slopeColor1, dcOffsetColor1);
         }
+
+
+
 
         function signal05(elapsedTime){
-             let periodGreen, slopeGreen, dcOffsetGreen;
-             periodGreen = 250;
-             slopeGreen = 200/periodGreen; //Height of sawtooth arbitrary decision. Choose 200, so when duty cycle = 50%, sawtooth goes from -100 to 100
-             dcOffsetGreen = -100; //dcOffset controls duty cycle.
+             let periodColor1, slopeColor1, dcOffsetColor1;
 
+             periodColor1 = 1;
+             slopeColor1 = 200/periodColor1; //Height of sawtooth arbitrary decision. Choose 200, so when duty cycle = 50%, sawtooth goes from -100 to 100
+             dcOffsetColor1 = -100; //dcOffset controls duty cycle.
              //dcOffset duty cycle ranges from 0 to -200. -100 = 50% duty cycle,
              //dutyCycle = (dcOffset/MAXdcOffset)*100%
              //Note: duty cycles too far from 50% look a little glitchy.
-             pattern05(elapsedTime, periodGreen, slopeGreen, dcOffsetGreen);
+             pattern05(elapsedTime, periodColor1, slopeColor1, dcOffsetColor1);
         }
 
-        function signal06(elapsedTime){
-            let periodGreen, slopeGreen, dcOffsetGreen;
-             if (elapsedTime < (t5 + (t6-t5)/5)){
-               periodGreen = 250; //in milliseconds
-             }
-             if ((elapsedTime >=(t5+(t6-t5)/5)) && (elapsedTime < (t5 + 2*(t6-t5)/5))){
-               periodGreen = 500;
-             }
-             if ((elapsedTime >=(t5+ 2*(t6-t5)/5)) && (elapsedTime < (t5 + 3*(t6-t5)/5))){
-               periodGreen = 750;
-             }
-             if ((elapsedTime >=(t5 + 3*(t6-t5)/5)) && (elapsedTime < (t5+ 4*(t6-t5)/5))){
-               periodGreen = 1000;
-             }
-             if ((elapsedTime >=(t5+ 4*(t6-t5)/5)) && (elapsedTime < t6)){
-               periodGreen = 1500;
-             }
-             slopeGreen = 200/periodGreen; //Height of sawtooth arbitrary decision. Choose 200, so when duty cycle = 50%, sawtooth goes from -100 to 100
-             dcOffsetGreen = -100; //dcOffset controls duty cycle.
-
-             //dcOffset duty cycle ranges from 0 to -200. -100 = 50% duty cycle,
-             //dutyCycle = (dcOffset/MAXdcOffset)*100%
-             //Note: duty cycles too far from 50% look a little glitchy.
-             pattern07(elapsedTime, periodGreen, slopeGreen, dcOffsetGreen);
-        }
-
-        function signal07(elapsedTime){
-             let periodGreen, slopeGreen, dcOffsetGreen, periodBlue, slopeBlue, dcOffsetBlue;
-
-             periodGreen = 1;
-             slopeGreen = 200/periodGreen; //Height of sawtooth arbitrary decision. Choose 200, so when duty cycle = 50%, sawtooth goes from -100 to 100
-             dcOffsetGreen = -100; //dcOffset controls duty cycle.
-             //dcOffset duty cycle ranges from 0 to -200. -100 = 50% duty cycle,
-             //dutyCycle = (dcOffset/MAXdcOffset)*100%
-             //Note: duty cycles too far from 50% look a little glitchy.
-             pattern03(elapsedTime, periodGreen, slopeGreen, dcOffsetGreen);
-        }
-
-        //define flashing pattern
         function pattern01(elapsedTime, period, slope, dcOffset) {
-             let sawtoothValue;
-             sawtoothValue = slope*(elapsedTime % period) + dcOffset;
-
-                if (sawtoothValue > 0) {
-                     ctx.fillStyle = 'black'; // black = rgb(0,0,0)
-                }
-                if (sawtoothValue <= 0){
-                     ctx.fillStyle = 'rgb(0,255,127)'; // SpringGreen = rgb(0,255,127)
-                }
-
-        }
-
-        //define flashing pattern
-        function pattern02(elapsedTime, period, slope, dcOffset) {
-             let sawtoothValue;
-             sawtoothValue = slope*(elapsedTime % period) + dcOffset;
-
-                if (sawtoothValue > 0) {
-                     ctx.fillStyle = 'black';
-                }
-                if (sawtoothValue <= 0){
-                     ctx.fillStyle = 'SkyBlue'; //SkyBlue = rgb((135,206,235)
-                }
-
-        }
-
-        function pattern03(elapsedTime, period, slope, dcOffset) {
-             //let sawtoothValue;
-             //sawtoothValue = slope*(elapsedTime % period) + dcOffset;
-             ctx.fillStyle = 'black';
-        }
-
-        function pattern04(elapsedTime, period, slope, dcOffset) {
              let sawtoothValue, triangleValue, scaleRed, scaleGreen, scaleBlue;
              sawtoothValue = slope*(elapsedTime % period) + dcOffset;
              triangleValue = Math.abs(Math.abs(sawtoothValue) + dcOffset);
+             //console.log("triangleValue", triangleValue);
              //rgb value of dark orchid is: (153, 50, 204)
              //(triangleValue/dcOffset) goes from 0 to 1, and then back to 0, during one period
              //Smoothly transition from black to dark orchid, rgb(153,50,204), back to black, rgb(0,0,0)
@@ -268,11 +201,10 @@
              ctx.fillStyle = "rgb("+scaleRed+", "+scaleGreen+", "+scaleBlue+")";
         }
 
-        function pattern05(elapsedTime, period, slope, dcOffset) {
+        function pattern02(elapsedTime, period, slope, dcOffset) {
              let sawtoothValue, triangleValue, scaleRed, scaleGreen, scaleBlue;
              sawtoothValue = slope*(elapsedTime % period) + dcOffset;
              triangleValue = Math.abs(Math.abs(sawtoothValue) + dcOffset);
-
              //rgb value of spring green is: rgb(0,255,127)
              //(triangleValue/dcOffset) goes from 0 to 1, and then back to 0, during one period
              //Smoothly transition from black to spring green, rgb(0,255,127), back to black, rgb(0,0,0)
@@ -282,7 +214,7 @@
              ctx.fillStyle = "rgb("+scaleRed+", "+scaleGreen+", "+scaleBlue+")";
         }
 
-         function pattern06(elapsedTime, period, slope, dcOffset) {
+         function pattern03(elapsedTime, period, slope, dcOffset) {
              let sawtoothValue, triangleValue, scaleRed, scaleGreen, scaleBlue;
              sawtoothValue = slope*(elapsedTime % period) + dcOffset;
              triangleValue = Math.abs(Math.abs(sawtoothValue) + dcOffset);
@@ -295,7 +227,7 @@
              ctx.fillStyle = "rgb("+scaleRed+", "+scaleGreen+", "+scaleBlue+")";
         }
 
-        function pattern07(elapsedTime, period, slope, dcOffset) {
+        function pattern04(elapsedTime, period, slope, dcOffset) {
              let sawtoothValue, triangleValue, scaleRed, scaleGreen, scaleBlue;
              sawtoothValue = slope*(elapsedTime % period) + dcOffset;
              triangleValue = Math.abs(Math.abs(sawtoothValue) + dcOffset);
@@ -306,6 +238,12 @@
              scaleGreen = Math.round(Math.abs(triangleValue/dcOffset)*196);
              scaleBlue = Math.round(Math.abs(triangleValue/dcOffset)*113);
              ctx.fillStyle = "rgb("+scaleRed+", "+scaleGreen+", "+scaleBlue+")";
+        }
+
+         function pattern05(elapsedTime, period, slope, dcOffset) {
+             //let sawtoothValue;
+             //sawtoothValue = slope*(elapsedTime % period) + dcOffset;
+             ctx.fillStyle = 'black';
         }
 
         function stopFlashing() {
@@ -325,6 +263,7 @@
             contentDiv.style.display = 'block';
             startButton.style.display = 'block';
             canvas.style.display = 'none';
+            location.reload(true); //refresh the webpage
         }
 
         function stopHandler(event) {

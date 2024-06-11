@@ -109,7 +109,7 @@
              //console.log("finalPeriod", finalPeriod);
              periodColor1 = initialPeriod + ((finalPeriod - initialPeriod)/timeInterval)*(elapsedTime - 0); //gradually decrease period (i.e. increase frequency) during time interval
              periodColor1 = Math.round(periodColor1/400)*400; //round periodColor1 to nearest 50 milliseconds
-             console.log("periodColor1", periodColor1);
+             //console.log("periodColor1", periodColor1);
              slopeColor1 = 200/periodColor1; //Height of sawtooth arbitrary decision. Choose 200, so when duty cycle = 50%, sawtooth goes from -100 to 100
              dcOffsetColor1 = -100; //dcOffset controls duty cycle.
 

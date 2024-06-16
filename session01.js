@@ -15,7 +15,6 @@
         lastTime = 0;
         isFirstLoop = 1;
         firstPassTime = 0;
-        startButton.style.display = 'none'; // Hide the button
 
         // Add a custom button to the player
         // Load and play a specific video
@@ -275,7 +274,7 @@
 
 
             if (animationFrameId) cancelAnimationFrame(animationFrameId);
-            startButton.textContent = 'Start';
+            startButton.textContent = 'Begin Flashing';
             startButton.removeEventListener('click', stopFlashing);
             startButton.addEventListener('click', startFlashing);
             isFirstLoop = 1;
@@ -288,14 +287,14 @@
             contentDiv.style.display = 'block';
             startButton.style.display = 'block';
             canvas.style.display = 'none';
-            location.reload(true); //refresh the webpage
+            //location.reload(true); //refresh the webpage
         }
 
         function stopHandler(event) {
             // Preventing the event from re-triggering start
             if (event.target !== startButton) {
                 stopFlashing();
-                location.reload(true); //refresh the webpage
+                //location.reload(true); //refresh the webpage
                 //console.log(player.getPlayerState());
             }
         }

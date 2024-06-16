@@ -25,20 +25,7 @@
            border-radius: 30px;
         }
 
-        #player-container {
-            display: none;
-        }
-
-        #myParagraph {
-            /*background-color: lightgrey;*/
-            border: 1px solid;
-            padding: 10px;
-            margin: 10px;
-            border-radius: 30px;
-
-        }
-
-        #myContactImage {
+         #myContactImage {
             width: 26%;
                 @media (max-width: 600px) {
                 width: 80%;
@@ -48,6 +35,14 @@
             }
         }
 
+         #myParagraph {
+            /*background-color: lightgrey;*/
+            border: 1px solid;
+            padding: 10px;
+            margin: 10px;
+            border-radius: 30px;
+
+        }
         h1 {
             font-size: 25px;
 
@@ -79,21 +74,6 @@
             top: 0;
             left: 0;
         }
-        .btn-group button {
-                /*margin: auto 5px;*/
-                float: left; /* Float the buttons side by side */
-        }
-
-        /* Clear floats (clearfix hack) */
-        .btn-group:after {
-        content: "";
-        clear: both;
-        display: table;
-        }
-
-        .btn-group button:not(:last-child) {
-        border-right: none; /* Prevent double borders */
-        }
 
         #startButton {
             margin-top: 40px;
@@ -104,29 +84,23 @@
             border: none;
             border-radius: 10px;
             cursor: pointer;
-            display: none;
-            margin: 0 5px;
+            display: block;
+            margin: 0 auto;
         }
         #startButton:hover {
             background-color: #0056b3;
         }
 
-        #backButton {
-            margin-top: 40px;
-            margin-left: 50px;
-            padding: 25px 40px;
-            font-size: 35px;
-            color: white;
-            background-color: #1f9412;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            display: block;
-            margin: 0 5px;
+        .video {
+            aspect-ratio: 16 / 9;
+            width: 60%;
+            @media (max-width: 768px) {
+            width: 95%;
+            }
+            padding: 10px;
+
         }
-        #backButton:hover {
-            background-color: #03661d;
-        }
+
 
         .mainImageFormat {
             display: block;
@@ -147,10 +121,10 @@
             margin-right: auto;
             width: 30%;
             @media (max-width: 600px) {
-                width: 90%;
+                width: 80%;
             }
             @media (min-width: 950px) {
-                width: 50%;
+                width: 40%;
             }
         }
 
@@ -165,12 +139,9 @@
                 padding: 10px 20px; /* Smaller padding for the button */
                 font-size: 30px; /* Smaller font size for the button text */
             }
-             #backButton {
-                padding: 10px 20px; /* Smaller padding for the button */
-                font-size: 30px; /* Smaller font size for the button text */
-            }
             h1 {
             font-size: 25px;
 
             }
         }
+

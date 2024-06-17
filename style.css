@@ -96,6 +96,23 @@
             background-color: #0056b3;
         }
 
+         #backButton {
+            margin-top: 40px;
+            margin-left: 50px;
+            padding: 15px 25px;
+            font-size: 30px;
+            color: white;
+            background-color: #1f9412;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            display: block;
+            margin: 0 5px;
+        }
+        #backButton:hover {
+            background-color: #03661d;
+        }
+
         .video {
             aspect-ratio: 16 / 9;
             width: 60%;

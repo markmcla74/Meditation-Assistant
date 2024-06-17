@@ -25,6 +25,11 @@
            border-radius: 30px;
         }
 
+        #player {
+           max-width: 65%;
+
+        }
+
          #myContactImage {
             width: 26%;
                 @media (max-width: 600px) {
@@ -143,5 +148,6 @@
             font-size: 25px;
 
             }
+
         }
 

@@ -150,7 +150,71 @@
             }
         }
 
-        @media (max-width: 768px) {
+
+/* Styling the navigation bar */
+nav {
+  background-color: #01202e;
+  border-radius: 25px;
+  width: 98%;
+
+}
+
+.navbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 25px;
+  padding: 20px;
+  font-size: 18px;
+
+   @media (max-width: 600px) {
+  font-size: 12px;
+  }
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  padding: 10px 20px;
+  margin: 0 20px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.navbar a:hover {
+  background-color: #555;
+}
+.active {
+  background-color: #4CAF50;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+
+        @media screen and (max-width: 768px) {
             #content {
                 max-width: 100%; /* Use full width for smaller screens */
                 padding: 10px; /* Reduce padding */
@@ -165,6 +229,7 @@
             font-size: 25px;
 
             }
+
 
         }
 

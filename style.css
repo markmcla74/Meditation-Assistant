@@ -165,7 +165,7 @@ nav {
   align-items: center;
   height: 25px;
   padding: 20px;
-  font-size: 18px;
+  font-size: 23px;
 
    @media (max-width: 600px) {
   font-size: 12px;
@@ -229,7 +229,9 @@ nav {
             font-size: 25px;
 
             }
-
+            .navbar {
+            font-size: 30px;
+            }
 
         }
 

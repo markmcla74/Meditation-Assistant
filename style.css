@@ -124,11 +124,24 @@
         }
 
 
-        .mainImageFormat {
+         .mainImageFormat {
             display: block;
             margin-left: auto;
             margin-right: auto;
             width: 70%;
+            @media (max-width: 600px) {
+                width: 90%;
+            }
+            @media (min-width: 950px) {
+                width: 50%;
+            }
+        }
+
+        .secondaryImageFormat {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 50%;
             @media (max-width: 600px) {
                 width: 90%;
             }

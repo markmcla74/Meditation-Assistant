@@ -5,6 +5,8 @@
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
 
+
+
         let elapsedTime, lastTime, firstPassTime, isFirstLoop, sawtoothValue, animationFrameId, t1, t2, t3, t4, t5, t6, player;
         t1 = 90000;  // 1 min 30 sec
         t2 = 180000; // 3 min
@@ -269,6 +271,22 @@
              //sawtoothValue = slope*(elapsedTime % period) + dcOffset;
              ctx.fillStyle = 'black';
         }
+
+         function pattern06(elapsedTime, period, slope, dcOffset) {
+             let sineValue, sawtoothValue, triangleValue, scaleRed, scaleGreen, scaleBlue;
+             //You can define shapes different than triangle waves. For example, sine waves.
+             //I chose mostly triangle waves because of the linear shape. But you can't see 
+             //much of a difference between triangle and sine waves.
+             sineValue = 0.5*(1 + Math.sin(2*Math.PI*(1/period)*elapsedTime));
+             //More complicated sine waves are also easy to make. Just make sure the peak to peak value is between 0 - 1.
+             //sineValue = 0.5*(0.5*(1 + Math.sin(2*Math.PI*(1/period)*elapsedTime)) + 0.5*(1 + Math.sin(2*Math.PI*(2/period)*elapsedTime))) ;
+             scaleRed = Math.round(sineValue*248);
+             scaleGreen = Math.round(sineValue*196);
+             scaleBlue = Math.round(sineValue*113);
+             ctx.fillStyle = "rgb("+scaleRed+", "+scaleGreen+", "+scaleBlue+")";
+        }
+
+
 
         function stopFlashing() {
 
